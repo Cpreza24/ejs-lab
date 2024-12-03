@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('./partials/nav') %>
-    <title>Document</title>
+    <title><%= menuParam %></title>
 </head>
 <body>
-    
+    <ul>
+        <% menuItems.forEach(item => { %>
+            <% if (item.rating === 5) { %>
+                <li>
+                    <strong><%= item.name %>⭐</strong> | $<%= item.price %> | Rating - <%= item.rating %> | <%= item.details %>
+                </li>
+            <% } %>
+
+            <% if (item.rating < 5) { %>
+                <li>
+                    <strong><%= item.name %></strong> | $<%= item.price %> | Rating - <%= item.rating %> | <%= item.details %>
+                </li>
+            <% } %>
+        <% }) %>
+    </ul>
 </body>
 </html>

@@ -59,18 +59,18 @@ const RESTAURANT = {
 
 
 app.get('/', (req, res) => {
-    res.render('home', {RESTAURANT});
+    res.render('home.ejs', {RESTAURANT});
 });
 
 app.get('/menu', (req, res) => {
-    res.render('menu', {RESTAURANT});
+    res.render('menu.ejs', {RESTAURANT});
 })
 
 // Exercise 3
-app.get('menu/:category', (req, res) => {
-    res.render('category', () => {
-        
-    });
+app.get('/menu/:category', (req, res) => {
+    const menuParam = req.params.category;
+    const menuItems = RESTAURANT.menu.filter(item => item.category === menuParam);
+    res.render('category.ejs', { menuItems, menuParam });
 })
 
 app.listen(3000, () => {
